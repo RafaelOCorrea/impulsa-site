@@ -10,6 +10,10 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Lato', sans-serif;
     color: var(--text);
@@ -19,7 +23,7 @@ body {
 h1, h2, h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; }
 
 .container {
-    max-width: 1280px; /* Aumentado para caber os 3 cards lado a lado */
+    max-width: 1280px; 
     margin: 0 auto;
     padding: 0 20px;
 }
@@ -43,7 +47,7 @@ nav {
     height: 200px; 
     width: auto; 
     display: block;
-    margin: -30px auto; /* Margem negativa para ajuste fino */
+    margin: -30px auto; 
     max-width: 100%; 
     max-height: none;
     object-fit: contain;
@@ -184,7 +188,7 @@ nav {
 /* Estilo dos Cards de Jornada */
 .product-card {
     background: rgba(255,255,255,0.05);
-    padding: 30px 20px; /* Padding otimizado para caber conteúdo */
+    padding: 30px 20px; 
     border: 1px solid rgba(255,255,255,0.1);
     border-radius: 8px;
     position: relative;
@@ -308,54 +312,53 @@ footer {
         right: 20px;
         font-size: 25px;
     }
-}
-/* --- SEÇÃO SOBRE (LIDERANÇA) --- */
 
-.about-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 50px;
+    /* Ajuste para o sobre não centralizar tudo forçadamente no mobile se não quiser */
+    .section-title { text-align: center !important; }
 }
 
-.about-text {
-    flex: 2; /* Ocupa mais espaço que o ícone */
+/* --- SEÇÃO SOBRE (CENTRALIZADA/SEM FOTO) --- */
+
+.about-text-centered {
+    max-width: 800px; 
+    margin: 0 auto;   
+    text-align: center; 
 }
 
-.about-visual {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.about-visual i {
-    font-size: 150px; /* Ícone gigante */
-    color: var(--navy);
-    opacity: 0.1; /* Bem suave para não roubar a cena */
-}
-
-/* Caixa da Frase de Efeito */
 .quote-box {
     background-color: var(--navy);
     color: var(--gold);
-    padding: 20px 30px;
+    padding: 30px;
     border-radius: 8px;
     font-weight: 700;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     text-align: center;
-    border-left: 5px solid var(--gold);
+    border-top: 5px solid var(--gold);
+    border-left: none; 
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    margin-top: 40px;
 }
 
-/* RESPONSIVO DO SOBRE */
+/* --- BOTÃO FINAL (CTA) CORREÇÃO MOBILE --- */
+
+.btn-cta-final {
+    font-size: 1.2rem;
+    padding: 20px 40px;
+    display: inline-block; 
+}
+
 @media (max-width: 768px) {
-    .about-wrapper {
-        flex-direction: column-reverse; /* Ícone vai pra baixo ou some */
-        text-align: center;
+    .btn-cta-final {
+        font-size: 1rem;      
+        padding: 15px 20px;   
+        width: 100%;          
+        max-width: 350px;     
+        display: block;       
+        margin: 0 auto;       
     }
 
-    .section-title { text-align: center !important; }
-    
-    .about-visual { display: none; } /* Esconde o ícone no celular pra economizar espaço */
+    .quote-box {
+        font-size: 1.1rem;    
+        padding: 20px;
+    }
 }
