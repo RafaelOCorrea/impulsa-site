@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impulsa | Área para Contadores</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <div class="container nav-content" style="display: flex; justify-content: space-between; align-items: center; padding: 15px 20px;">
+            <a href="index.html">
+                <img src="Impulsa_logo.png" alt="Impulsa Farma" style="height: 60px; width: auto;">
+            </a>
+            <a href="index.html" class="btn-outline">Para Farmácias</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <h1>Transforme XMLs em <span class="gold-text">Novos Honorários</span>.</h1>
+            <p class="subtitle">Auditoria tributária automatizada para o varejo. Nós processamos os dados, você entrega o laudo com a <strong>sua marca</strong>.</p>
+        </div>
+    </header>
+
+    <section class="section-white">
+        <div class="container">
+            <h2 class="section-title">Como funciona a Parceria White-Label?</h2>
+            <div class="grid-3">
+                <div class="card">
+                    <i class="fa-solid fa-file-code icon-gold"></i>
+                    <h3>1. Você envia os dados</h3>
+                    <p>Sua equipe exporta os XMLs ou a base de produtos do cliente e envia para o nosso motor de inteligência.</p>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-microchip icon-gold"></i>
+                    <h3>2. Nós auditamos</h3>
+                    <p>A Impulsa cruza milhares de itens em segundos com a legislação (Monofásicos, ST, Reduções de Base).</p>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-file-pdf icon-gold"></i>
+                    <h3>3. Você fatura</h3>
+                    <p>Devolvemos um laudo executivo pronto com a identidade do seu escritório. Você apresenta ao cliente e gera valor.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-blue" id="cadastro-contador">
+        <div class="container about-text-centered">
+            <h2 class="white-text" style="margin-bottom: 20px;">Seja um Escritório Parceiro</h2>
+            <p class="white-text" style="margin-bottom: 40px; opacity: 0.9;">Preencha os dados para agendarmos uma demonstração rápida de um laudo real.</p>
+            
+            <div class="form-container">
+                <form action="https://formsubmit.co/rafael@impulsafarma.com.br" method="POST" class="impulsa-form">
+                    <input type="hidden" name="_subject" value="NOVO PARCEIRO - Escritório de Contabilidade">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_next" value="https://www.impulsafarma.com.br">
+                    
+                    <div class="input-group"><input type="text" name="Escritorio" placeholder="Nome do Escritório" required></div>
+                    <div class="input-group"><input type="text" name="Nome" placeholder="Seu Nome" required></div>
+                    <div class="input-group"><input type="email" name="Email" placeholder="E-mail Profissional" required></div>
+                    <div class="input-group"><input type="tel" name="Telefone" placeholder="WhatsApp" required></div>
+                    
+                    <button type="submit" class="btn-primary" style="width: 100%; border: none; cursor: pointer;">Agendar Demonstração</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

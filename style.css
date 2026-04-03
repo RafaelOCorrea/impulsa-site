@@ -362,3 +362,28 @@ footer {
         padding: 20px;
     }
 }
+
+/* --- FORMULÁRIOS --- */
+.form-container {
+    background: var(--white);
+    padding: 40px;
+    border-radius: 8px;
+    max-width: 500px;
+    margin: 0 auto;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+.input-group { margin-bottom: 20px; }
+.input-group input {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #cbd5e1;
+    border-radius: 5px;
+    font-family: 'Lato', sans-serif;
+    font-size: 1rem;
+    color: var(--navy);
+}
+.input-group input:focus {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.3);
+}
