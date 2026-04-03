@@ -13,7 +13,7 @@
     <nav>
         <div class="container nav-content" style="display: flex; justify-content: center; align-items: center; padding: 15px 20px;">
             <a href="index.html">
-                <img src="Impulsa_logo.png" alt="Impulsa Farma" style="height: 60px; width: auto;">
+                <img src="Impulsa_logo.png" alt="Impulsa Farma" style="height: 90px; width: auto;">
             </a>
         </div>
     </nav>
@@ -26,18 +26,59 @@
             </p>
             
             <div class="form-container">
-                <form action="https://formspree.io/f/xwvwrwvz" method="POST" class="impulsa-form">
-                    <input type="hidden" name="_next" value="https://www.impulsafarma.com.br">
-                    <div class="input-group"><input type="text" name="Escritorio" placeholder="Nome do Escritório" required></div>
+                <form id="form-diagnostico" action="https://formspree.io/f/xwvwrwvz" method="POST" class="impulsa-form">
+                    
                     <div class="input-group"><input type="text" name="Nome" placeholder="Seu Nome" required></div>
+                    <div class="input-group"><input type="text" name="Farmacia" placeholder="Nome da Farmácia" required></div>
                     <div class="input-group"><input type="email" name="Email" placeholder="E-mail Profissional" required></div>
-                    <div class="input-group"><input type="tel" name="Telefone" placeholder="WhatsApp" required></div>
+                    <div class="input-group"><input type="tel" name="Telefone" placeholder="WhatsApp (com DDD)" required></div>
     
-                     <button type="submit" class="btn-primary" style="width: 100%; border: none; cursor: pointer;">Agendar Demonstração</button>
+                     <button type="submit" id="btn-submit" class="btn-primary" style="width: 100%; border: none; cursor: pointer; padding: 15px; font-size: 1.1rem;">Solicitar Análise</button>
                 </form>
             </div>
         </div>
     </section>
+
+    <script>
+        var form = document.getElementById("form-diagnostico");
+        
+        form.addEventListener("submit", async function(event) {
+            event.preventDefault(); // Impede o Formspree de abrir a tela de "Obrigado"
+            
+            var data = new FormData(form);
+            var button = document.getElementById("btn-submit");
+            
+            // Muda o texto do botão para mostrar que está carregando
+            button.innerHTML = "Enviando..."; 
+            button.style.opacity = "0.7";
+            button.disabled = true;
+
+            try {
+                const response = await fetch(form.action, {
+                    method: form.method,
+                    body: data,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    // Se deu certo, joga o cliente de volta para a Home!
+                    window.location.href = "index.html";
+                } else {
+                    alert("Ocorreu um erro ao enviar. Tente novamente.");
+                    button.innerHTML = "Solicitar Análise";
+                    button.style.opacity = "1";
+                    button.disabled = false;
+                }
+            } catch (error) {
+                alert("Erro de conexão. Tente novamente.");
+                button.innerHTML = "Solicitar Análise";
+                button.style.opacity = "1";
+                button.disabled = false;
+            }
+        });
+    </script>
 
 </body>
 </html>
