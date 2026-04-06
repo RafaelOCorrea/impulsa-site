@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual de Auditoria Modular - Impulsa</title>
+    <style>
+        body {
+            background-color: #040b14; /* Azul marinho profundo */
+            color: #f4f8f9; /* Branco gelo */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 40px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+        h1, h2, h3 {
+            color: #d4af37; /* Dourado */
+        }
+        h1 {
+            text-align: center;
+            border-bottom: 2px solid #d4af37;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+        h2 {
+            margin-top: 40px;
+            border-bottom: 1px solid #1c4b5c;
+            padding-bottom: 5px;
+        }
+        .regra-box {
+            background-color: #0a1c36; /* Fundo das caixas em marinho intermediário */
+            border-left: 5px solid #d4af37;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+        .regra-titulo {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #d4af37;
+            margin-bottom: 10px;
+        }
+        .label {
+            font-weight: bold;
+            color: #d4af37;
+        }
+        .intro {
+            font-size: 1.1em;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .ncm-list {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding-left: 20px;
+            font-size: 0.95em;
+            color: #c9d6df;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Manual de Auditoria Modular - Impulsa</h1>
+    
+    <div class="intro">
+        <p><span class="label">Objetivo:</span> Detalhar as regras de validação aplicadas pelo motor de auditoria da Impulsa sobre os arquivos XML (NFe/NFCe) de drogarias e a base legal de cada apontamento.</p>
+    </div>
+
+    <h2>1. Módulo Universal (Aplicável a todos os CNPJs)</h2>
+
+    <div class="regra-box">
+        <div class="regra-titulo">1.1. Validação de CSOSN (Simples Nacional)</div>
+        <p><span class="label">Auditoria:</span> Bloqueia o uso de CSTs tradicionais (ex: 00, 20) e exige a utilização da tabela CSOSN (ex: 102, 300, 500).</p>
+        <p><span class="label">Diagnóstico Apresentado:</span> Verificar CSOSN</p>
+        <p><span class="label">Base Legal:</span> Ajuste SINIEF 07/05 e Resolução CGSN nº 140/2018.</p>
+    </div>
+
+    <div class="regra-box">
+        <div class="regra-titulo">1.2. Bloqueio de CST 01/02 (Simples Nacional)</div>
+        <p><span class="label">Auditoria:</span> Impede que produtos sejam faturados com CST de PIS/COFINS 01 ou 02 (Tributação Normal), prevenindo conflito com a guia do DAS.</p>
+        <p><span class="label">Diagnóstico Apresentado:</span> CST PIS/COFINS incompatível com Simples Nacional</p>
+        <p><span class="label">Base Legal:</span> Instrução Normativa RFB nº 2.121/2022.</p>
+    </div>
+
+    <div class="regra-box">
+        <div class="regra-titulo">1.3. Venda Cega, Validação de CFOP e ICMS</div>
+        <p><span class="label">Auditoria:</span> Bloqueia itens sem GTIN válido. Audita o uso correto de CFOPs de saída (ex: bloqueia CFOP 5405 para mercadorias que saíram da ST e exige 5102).</p>
+        <p><span class="label">Diagnóstico Apresentado:</span> VENDA CEGA / Uso indevido de CFOP 5405 / Verificar CST ICMS</p>
+        <p><span class="label">Base Legal:</span> Ajuste SINIEF 07/05 e regras gerais de ICMS.</p>
+    </div>
+
+    <h2>2. Módulo Farmácia e Cuidados Pessoais</h2>
+
+    <div class="regra-box">
+        <div class="regra-titulo">2.1. PIS/COFINS Monofásico (Medicamentos, Perfumaria e Higiene)</div>
+        <p><span class="label">Auditoria:</span> Exige CST 04 (Tributação Monofásica) para a Lista CMED e para a lista de perfumaria, higiene e toucador.</p>
+        <ul class="ncm-list">
+            <li>3303 (Perfumes e águas de toalete)</li>
+            <li>3304 (Maquiagem, cremes e cuidados da pele)</li>
+            <li>3305 (Preparações capilares, xampus)</li>
+            <li>3306 (Creme dental, fio dental, antissépticos)</li>
+            <li>3307 (Barbear, desodorantes, antitranspirantes, banho)</li>
+            <li>3401.11.90 / 3401.20.10 (Sabões de toucador e medicinais)</li>
+            <li>9603.21.00 (Escovas de dentes)</li>
+        </ul>
+        <p><span class="label">Diagnóstico Apresentado:</span> PIS/COFINS indevido via NCM/CMED (Esperado: 04)</p>
+        <p><span class="label">Base Legal:</span> Lei nº 10.147/2000.</p>
+    </div>
+
+    <div class="regra-box">
+        <div class="regra-titulo">2.2. ICMS SP: Alíquota 25% (Perfumaria e Cosméticos)</div>
+        <p><span class="label">Auditoria:</span> Exige alíquota de 25% de ICMS para itens considerados cosméticos e perfumaria.</p>
+        <ul class="ncm-list">
+            <li>3303 (Perfumes extratos)</li>
+            <li>3304 (Produtos de beleza e maquiagem)</li>
+            <li>3305 (Preparações capilares - <b>Exceto 3305.10</b>)</li>
+            <li>3307 (Preparações de higiene/toucador - <b>Exceto 3307.20</b>)</li>
+        </ul>
+        <p><span class="label">Diagnóstico Apresentado:</span> Aliquota ICMS incorreta (Esperado: 25%)</p>
+        <p><span class="label">Base Legal:</span> RICMS/SP - Artigo 55.</p>
+    </div>
+
+    <div class="regra-box">
+        <div class="regra-titulo">2.3. ICMS SP: Alíquota 18% (Regra Geral e Exceções)</div>
+        <p><span class="label">Auditoria:</span> Exige alíquota de 18% para produtos que não entram nas isenções ou reduções específicas, e itens retirados da perfumaria.</p>
+        <ul class="ncm-list">
+            <li>9619 (Absorventes e fraldas)</li>
+            <li>3005 (Curativos e gaze)</li>
+            <li>3305.10 (Shampoo)</li>
+            <li>3307.20 (Desodorantes)</li>
+            <li>3304.99.90 (Protetores solares e bronzeadores)</li>
+        </ul>
+        <p><span class="label">Diagnóstico Apresentado:</span> Aliquota ICMS incorreta (Esperado: 18%)</p>
+        <p><span class="label">Base Legal:</span> RICMS/SP - Artigo 52, inciso I e Art. 55, inciso IV.</p>
+    </div>
+    
+    <div class="regra-box">
+        <div class="regra-titulo">2.4. ICMS SP: Alíquota 12% (Higiene, Insumos e Genéricos)</div>
+        <p><span class="label">Auditoria:</span> Exige alíquota de 12% (com CST 00) para medicamentos genéricos e itens essenciais de saúde e higiene.</p>
+        <ul class="ncm-list">
+            <li>3306.10.00 (Creme dental)</li>
+            <li>9603.21.00 (Escova de dentes)</li>
+            <li>9018.31.19 / 9018.32.19 (Seringas e agulhas)</li>
+            <li>Medicamentos Genéricos (Lei 9.787/99)</li>
+        </ul>
+        <p><span class="label">Diagnóstico Apresentado:</span> Aliquota ICMS incorreta (Esperado: 12% CST 00)</p>
+        <p><span class="label">Base Legal:</span> RICMS/SP - Artigo 54 (incisos XV, XVIII e X).</p>
+    </div>
+
+    <div class="regra-box">
+        <div class="regra-titulo">2.5. ICMS SP: Alíquota 7% (Preservativos) e Reduções</div>
+        <p><span class="label">Auditoria:</span> Exige ICMS de 7% para preservativos e varre princípios ativos que possuem redução de base de cálculo (carga tributária de 7%).</p>
+        <ul class="ncm-list">
+            <li>4014.10.00 (Preservativos)</li>
+        </ul>
+        <p><span class="label">Diagnóstico Apresentado:</span> Verificar redução de aliquota (Esperado: 7%)</p>
+        <p><span class="label">Base Legal:</span> RICMS/SP - Artigo 53-A (Preservativos) e Convênios ICMS 162/94 e 87/02.</p>
+    </div>
+
+</div>
+
+</body>
+</html>
